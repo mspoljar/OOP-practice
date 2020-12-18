@@ -14,9 +14,7 @@ use App\Http\Controllers\PictureController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PictureController::class, 'welcome'] )->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +26,5 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('/picture/save', [PictureController::class, 'save'])->name('picsave');
     Route::get('/picture/delete/{id}', [PictureController::class, 'delete']);
     Route::get('/picture/change/{id}', [PictureController::class, 'change']);
+    Route::post('/picture/update', [PictureController::class, 'update']);
 });
